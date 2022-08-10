@@ -1,9 +1,18 @@
 import cv2
 import os
 import imutils
+from post.getAlumno import get_alumno
 
-print("¿Legajo del alumno?")
-legajo = input()
+while True:
+    print("¿Legajo del alumno?")
+    legajo = input()
+
+    alumno = get_alumno(legajo)
+
+    if alumno:
+        break
+
+
 
 personName = legajo
 dataPath = 'C:/Users/46195270/Desktop/Proyecto5to/Recognizera/Data'#Cambia a la ruta donde hayas almacenado Data

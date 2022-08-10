@@ -1,7 +1,8 @@
+from time import time
 import pyodbc
-from tiempo import bloque, time_BA
+from utils.tiempo import bloque, time_BA
 from ReconocimientoFacial import legajo
-from estado import pta
+from utils.estado import pta
 
 server = 'A-BTA-525'
 bd = 'TheFacialDataBase'
