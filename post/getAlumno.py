@@ -6,7 +6,7 @@ def get_alumno():
         conection = getConnect()
 
         with conection.cursor() as cursor:
-            cursor.execute("SELECT 'Legajo' from api_alumno ")
+            cursor.execute('SELECT * FROM api_alumno WHERE "Legajo" = ' + "'R1275'")
 
         # display the PostgreSQL database server version
             alumno = cursor.fetchall()
