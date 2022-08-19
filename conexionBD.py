@@ -26,7 +26,7 @@ except:
 cursor = conexion.cursor()
 
 cursor = conexion.cursor()
-query = "update Presencia set Estado = ?, Tiempo = ? from Presencia inner join CxMxPxA on Presencia.IdCMPA = CxMxPxA.IdCMPA where LegajoAlumno = ? and CxMxPxA.BloqueDia = ?"
+query = 'update Presencia set "Estado" = ?, "Tiempo" = ? from Presencia inner join CxMxPxA on Presencia.IdCMPA = CxMxPxA.IdCMPA where LegajoAlumno = ? and CxMxPxA.BloqueDia = ?'
 query2 = "INSERT INTO Alumno (Legajo, IdCurso) VALUES (?, ?)"
 val = (pta, time_BA, legajo, bloque)
 

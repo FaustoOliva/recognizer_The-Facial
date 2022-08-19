@@ -4,23 +4,38 @@ import imutils
 from post.getAlumno import get_alumno
 
 while True:
-    print("¿Legajo del alumno?")
+    print("¿Legajo del alumno? Aclaracion, pongalo entre comillas simples")
     legajo = input()
 
     alumno = get_alumno(legajo)
-
-    if alumno:
+   
+    if alumno: 
+        print(alumno)
         break
-
+    else:
+        print('No existe el legajo ingresado')
 
 
 personName = legajo
-dataPath = 'C:/Users/46195270/Desktop/Proyecto5to/Recognizera/Data'#Cambia a la ruta donde hayas almacenado Data
+characters = "'"
+
+personName = ''.join( x for x in personName if x not in characters)
+print(personName)
+dataPath = 'C:/Users/devandroid/Desktop/recognizer_The-Facial/Data'#Cambia a la ruta donde hayas almacenado Data
 personPath = dataPath + '/' + personName
 
 if not os.path.exists(personPath):
     print('Carpeta creada: ',personPath)
     os.makedirs(personPath)
+
+
+legajoPath = 'C:/Users/devandroid/Desktop/recognizer_The-Facial/Legajos'#Cambia a la ruta donde hayas almacenado Data
+legajoPath = legajoPath + '/' + personName 
+
+
+if not os.path.exists(legajoPath):
+    print('Carpeta creada: ',legajoPath)
+    os.makedirs(legajoPath)
 
 #Lineas 5 - 11
 #Se crea y posiciona en la carpeta en donde se guardaran las inscripciones del video/stream que se realize 

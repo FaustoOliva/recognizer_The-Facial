@@ -1,8 +1,9 @@
 import cv2
 import os
 import numpy as np
+import shutil
 
-dataPath = 'C:/Users/46195270/Desktop/Proyecto5to/Recognizera/Data' #Cambia a la ruta donde hayas almacenado Data
+dataPath = 'C:/Users/devandroid/Desktop/recognizer_The-Facial/Data' #Cambia a la ruta donde hayas almacenado Data
 peopleList = os.listdir(dataPath) # List de los nombres de las carpetas de inscripciones (nombres personas)
 print('Lista de personas: ', peopleList)
 
@@ -50,7 +51,8 @@ face_recognizer.write('modeloEigenFace') #1
 print("Modelo almacenado...") #Aprox 1min
 
 if os.path.exists(dataPath):
-    os.rmdir(dataPath)
+    shutil.rmtree(dataPath)
     print("Data borrada.")
 else:
     print("No se encontró la data.")
+
