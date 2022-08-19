@@ -2,8 +2,11 @@ import cv2
 import os
 import numpy as np
 import shutil
+from dotenv import load_dotenv
 
-dataPath = 'C:/Users/devandroid/Desktop/recognizer_The-Facial/Data' #Cambia a la ruta donde hayas almacenado Data
+load_dotenv()
+
+dataPath = os.getenv('DATA_PATH') #Cambia a la ruta donde hayas almacenado Data
 peopleList = os.listdir(dataPath) # List de los nombres de las carpetas de inscripciones (nombres personas)
 print('Lista de personas: ', peopleList)
 
@@ -49,10 +52,10 @@ face_recognizer.write('modeloEigenFace') #1
 #face_recognizer.write('modeloFisherFace.xml') #2
 #face_recognizer.write('modeloLBPHFace.xml') #3
 print("Modelo almacenado...") #Aprox 1min
-
+'''
 if os.path.exists(dataPath):
     shutil.rmtree(dataPath)
     print("Data borrada.")
 else:
     print("No se encontró la data.")
-
+'''

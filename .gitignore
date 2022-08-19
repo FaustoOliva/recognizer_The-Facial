@@ -127,3 +127,18 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Database 
+
+.ini
+
+
+# DATA
+
+Data/
+Legajos/
+
+
+# Modelo
+
+modeloEigenFace

@@ -2,9 +2,12 @@ import cv2
 import os
 import imutils
 from post.getAlumno import get_alumno
+from dotenv import load_dotenv
+
+load_dotenv()
 
 while True:
-    print("¿Legajo del alumno? Aclaracion, pongalo entre comillas simples")
+    print("¿Legajo del alumno?")
     legajo = input()
 
     alumno = get_alumno(legajo)
@@ -17,25 +20,19 @@ while True:
 
 
 personName = legajo
-characters = "'"
-
-personName = ''.join( x for x in personName if x not in characters)
-print(personName)
-dataPath = 'C:/Users/devandroid/Desktop/recognizer_The-Facial/Data'#Cambia a la ruta donde hayas almacenado Data
+dataPath = os.getenv('DATA_PATH')#Cambia a la ruta donde hayas almacenado Data
 personPath = dataPath + '/' + personName
+
+legajoPath = os.getenv('LEGAJOS_PATH')
+namePath = legajoPath + '/' + personName
 
 if not os.path.exists(personPath):
     print('Carpeta creada: ',personPath)
     os.makedirs(personPath)
 
-
-legajoPath = 'C:/Users/devandroid/Desktop/recognizer_The-Facial/Legajos'#Cambia a la ruta donde hayas almacenado Data
-legajoPath = legajoPath + '/' + personName 
-
-
-if not os.path.exists(legajoPath):
-    print('Carpeta creada: ',legajoPath)
-    os.makedirs(legajoPath)
+if not os.path.exists(namePath):
+    print('Carpeta creada: ',namePath)
+    os.makedirs(namePath)
 
 #Lineas 5 - 11
 #Se crea y posiciona en la carpeta en donde se guardaran las inscripciones del video/stream que se realize 

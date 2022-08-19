@@ -1,9 +1,14 @@
 import cv2
 import os
+from dotenv import load_dotenv
 
-dataPath = 'C:/Users/devandroid/Desktop/recognizer_The-Facial/Legajos' #Cambia a la ruta donde hayas almacenado Data
+load_dotenv()
+
+dataPath = os.getenv('LEGAJOS_PATH')#Cambia a la ruta donde hayas almacenado Data
 imagePaths = os.listdir(dataPath)
 print('imagePaths=',imagePaths)
+
+
 
 face_recognizer = cv2.face.EigenFaceRecognizer_create()  #1
 #face_recognizer = cv2.face.FisherFaceRecognizer_create() #2

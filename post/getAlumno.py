@@ -1,12 +1,16 @@
-from .connectar import getConnect
-
+from connectar import getConnect
+from utils.tiempo import bloque, time_BA
+from ReconocimientoFacial import legajo
+from utils.estado import pta
 
 def get_alumno(legajo):
-  
+    l = "'" + legajo + "'"
+   
+
     try:
         conection = getConnect()
         with conection.cursor() as cursor:
-            cursor.execute('SELECT * FROM api_alumno WHERE "Legajo" = ' + legajo)
+            cursor.execute('SELECT * FROM api_alumno WHERE "Legajo" = ' + l)
 
         # display the PostgreSQL database server version
             alumno = cursor.fetchall()
@@ -22,6 +26,33 @@ def get_alumno(legajo):
             conection.close()
             print('Database connection closed.')
 
+def modificar_presentismo(estado, tiempo, bloque):
+    e = "'" + estado + "'"
+    b = "'" + bloque + "'"
+    t = "'" + tiempo + "'"
+
+    XD  = 'update api_presencia set "Estado" = ' + e + ' ,"Tiempo" = ' + t + ' from api_cxmxpxa where api_presencia."IdCMPA" = api_cxmxpxa."IdCMPA" and "LegajoAlumno" = ' + "'R1275'" ' and api_cxmxpxa."BloqueDia" = ' + b
+
+    try:
+        conection = getConnect()
+        with conection.cursor() as cursor:
+            cursor.execute(XD)
+
+        # display the PostgreSQL database server version
+            
+            
+    
+        conection.commit()
+        
+    except Exception as ex:
+        raise Exception(ex)
+
+    finally:
+        if conection is not None:
+            conection.close()
+            print('Database connection closed.')
+
+
 if __name__ == '__main__':
-    get_alumno()
+    modificar_presentismo()
     

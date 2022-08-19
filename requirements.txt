@@ -3,3 +3,4 @@ numpy==1.23.2
 opencv-contrib-python==4.6.0.66
 opencv-python==4.6.0.66
 psycopg2==2.9.3
+python-dotenv==0.20.0
