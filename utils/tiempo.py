@@ -1,6 +1,4 @@
-from asyncio.windows_events import NULL
 from datetime import datetime, date
-from re import T
 import pytz
 import calendar
 import locale
@@ -9,15 +7,15 @@ locale.setlocale(locale.LC_ALL, 'es_ES')
 
 tz_BA = pytz.timezone('America/Argentina/Buenos_Aires')
 date_BA = datetime.now(tz_BA).strftime("%d/%m/%y")
-print(date_BA)
+
 
 tz_BA = pytz.timezone('America/Argentina/Buenos_Aires')
 time_BA = datetime.now(tz_BA).strftime("%H:%M:%S")
-print(time_BA)
+
 
 my_date = date.today()
 day_name_BA = calendar.day_name[my_date.weekday()]
-print(day_name_BA)
+
 
 bloque = day_name_BA[0].upper() + day_name_BA[1].upper()
 

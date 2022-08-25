@@ -3,9 +3,9 @@ from utils.tiempo import bloque, time_BA
 from ReconocimientoFacial import legajo
 from utils.estado import pta
 
+
 def get_alumno(legajo):
     l = "'" + legajo + "'"
-   
 
     try:
         conection = getConnect()
@@ -15,7 +15,7 @@ def get_alumno(legajo):
         # display the PostgreSQL database server version
             alumno = cursor.fetchall()
             print(alumno)
-    
+
         conection.commit()
         return alumno
     except Exception as ex:
@@ -26,24 +26,26 @@ def get_alumno(legajo):
             conection.close()
             print('Database connection closed.')
 
+
 def modificar_presentismo(estado, tiempo, bloque):
     e = "'" + estado + "'"
     b = "'" + bloque + "'"
     t = "'" + tiempo + "'"
 
-    XD  = 'update api_presencia set "Estado" = ' + e + ' ,"Tiempo" = ' + t + ' from api_cxmxpxa where api_presencia."IdCMPA" = api_cxmxpxa."IdCMPA" and "LegajoAlumno" = ' + "'R1275'" ' and api_cxmxpxa."BloqueDia" = ' + b
+    XD = 'update api_presencia set "Estado" = ' + e + ' ,"Tiempo" = ' + t + \
+        ' from api_cxmxpxa where api_presencia."IdCMPA" = api_cxmxpxa."IdCMPA" and "LegajoAlumno" = ' + \
+        "'R1275'" ' and api_cxmxpxa."BloqueDia" = ' + b
 
     try:
         conection = getConnect()
         with conection.cursor() as cursor:
             cursor.execute(XD)
+            print(cursor.rowcount, "Registro actualizado")
 
         # display the PostgreSQL database server version
-            
-            
-    
+
         conection.commit()
-        
+
     except Exception as ex:
         raise Exception(ex)
 
@@ -51,8 +53,3 @@ def modificar_presentismo(estado, tiempo, bloque):
         if conection is not None:
             conection.close()
             print('Database connection closed.')
-
-
-if __name__ == '__main__':
-    modificar_presentismo()
-    

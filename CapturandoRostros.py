@@ -13,8 +13,10 @@ while True:
     alumno = get_alumno(legajo)
    
     if alumno: 
-        print(alumno)
-        break
+        print(alumno, "¿Es correcto?Si es asi, presione 'y', si no lo es presione'n'")
+        ip = input()
+        if(ip == "y"): break
+        
     else:
         print('No existe el legajo ingresado')
 
