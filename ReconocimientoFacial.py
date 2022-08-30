@@ -1,7 +1,7 @@
 import cv2
 import os
 from dotenv import load_dotenv
-
+from post.getAlumno import modificar_presentismo
 load_dotenv()
 
 dataPath = os.getenv('LEGAJOS_PATH')#Cambia a la ruta donde hayas almacenado Data
@@ -49,7 +49,9 @@ while True:
         if result[1] < 6300: # Fijarnos en el valor de la confianza para determinar rostros entrenadps / desconocidos
             cv2.putText(frame,'{}'.format(imagePaths[result[0]]),(x,y-25),2,1.1,(0,255,0),1,cv2.LINE_AA)
             cv2.rectangle(frame, (x,y),(x+w,y+h),(0,255,0),2)
+            p = modificar_presentismo()
             
+
         else:
             cv2.putText(frame,'Desconocido',(x,y-20),2,0.8,(0,0,255),1,cv2.LINE_AA)
             cv2.rectangle(frame, (x,y),(x+w,y+h),(0,0,255),2)

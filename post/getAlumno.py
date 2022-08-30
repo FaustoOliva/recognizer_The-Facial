@@ -2,7 +2,7 @@ from connectar import getConnect
 from utils.tiempo import bloque, time_BA
 from ReconocimientoFacial import legajo
 from utils.estado import pta
-
+from ..ReconocimientoFacial import legajo
 
 def get_alumno(legajo):
     l = "'" + legajo + "'"
@@ -31,16 +31,17 @@ def modificar_presentismo(estado, tiempo, bloque):
     e = "'" + estado + "'"
     b = "'" + bloque + "'"
     t = "'" + tiempo + "'"
+    l = "" + legajo + "'"
 
     XD = 'update api_presencia set "Estado" = ' + e + ' ,"Tiempo" = ' + t + \
         ' from api_cxmxpxa where api_presencia."IdCMPA" = api_cxmxpxa."IdCMPA" and "LegajoAlumno" = ' + \
-        "'R1275'" ' and api_cxmxpxa."BloqueDia" = ' + b
+        l + ' and api_cxmxpxa."BloqueDia" = ' + b
 
     try:
         conection = getConnect()
         with conection.cursor() as cursor:
             cursor.execute(XD)
-            print(cursor.rowcount, "Registro actualizado")
+            print(cursor.rowcount, "Presentimso actualizado")
 
         # display the PostgreSQL database server version
 
