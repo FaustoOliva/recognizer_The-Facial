@@ -52,10 +52,9 @@ face_recognizer.write('modeloEigenFace') #1
 #face_recognizer.write('modeloFisherFace.xml') #2
 #face_recognizer.write('modeloLBPHFace.xml') #3
 print("Modelo almacenado...") #Aprox 1min
-'''
+
 if os.path.exists(dataPath):
     shutil.rmtree(dataPath)
     print("Data borrada.")
 else:
     print("No se encontró la data.")
-'''

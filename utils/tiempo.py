@@ -2,7 +2,6 @@ from datetime import datetime, date
 import pytz
 import calendar
 import locale
-
 locale.setlocale(locale.LC_ALL, 'es_ES')
 
 tz_BA = pytz.timezone('America/Argentina/Buenos_Aires')
@@ -34,3 +33,4 @@ elif time_BA > '16:01:00' and time_BA < '17:30:00':
 
 
 print(bloque)
+print(time_BA)

@@ -1,7 +1,10 @@
 import cv2
 import os
 from dotenv import load_dotenv
-from post.getAlumno import modificar_presentismo
+from post.getPresentismo import modificar_presentismo
+from utils.estado import pta as estado
+from utils.tiempo import bloque, time_BA as tiempo
+
 load_dotenv()
 
 dataPath = os.getenv('LEGAJOS_PATH')#Cambia a la ruta donde hayas almacenado Data
@@ -20,7 +23,7 @@ face_recognizer.read('modeloEigenFace')  #1
 #face_recognizer.read('modeloLBPHFace.xml')   #3
 
 try:
-    cap = cv2.VideoCapture(0,cv2.CAP_DSHOW) #Captura video streaming. 0 => camara default
+    cap = cv2.VideoCapture(1,cv2.CAP_DSHOW) #Captura video streaming. 0 => camara default
     #cap = cv2.VideoCapture('Video.mp4')
 except:
     print('Falló conexion de camara.')
@@ -49,9 +52,10 @@ while True:
         if result[1] < 6300: # Fijarnos en el valor de la confianza para determinar rostros entrenadps / desconocidos
             cv2.putText(frame,'{}'.format(imagePaths[result[0]]),(x,y-25),2,1.1,(0,255,0),1,cv2.LINE_AA)
             cv2.rectangle(frame, (x,y),(x+w,y+h),(0,255,0),2)
-            p = modificar_presentismo()
-            
+            legajo = '{}'.format(imagePaths[result[0]])
 
+            p = modificar_presentismo(estado, bloque, tiempo, legajo)
+            
         else:
             cv2.putText(frame,'Desconocido',(x,y-20),2,0.8,(0,0,255),1,cv2.LINE_AA)
             cv2.rectangle(frame, (x,y),(x+w,y+h),(0,0,255),2)
@@ -75,7 +79,6 @@ while True:
     cv2.imshow('frame',frame)
     k = cv2.waitKey(1)
     if k == 27:
-        legajo = '{}'.format(imagePaths[result[0]])
         break
 
 cap.release()

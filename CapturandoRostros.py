@@ -39,7 +39,7 @@ if not os.path.exists(namePath):
 #Lineas 5 - 11
 #Se crea y posiciona en la carpeta en donde se guardaran las inscripciones del video/stream que se realize 
 try:
-    cap = cv2.VideoCapture(0,cv2.CAP_DSHOW) #Captura video streaming. 0 => camara default
+    cap = cv2.VideoCapture(1,cv2.CAP_DSHOW) #Captura video streaming. 0 => camara default
     #cap = cv2.VideoCapture('Video.mp4')
 except:
     print('Falló conexion de camara.')
@@ -74,6 +74,7 @@ while True:
 
     k =  cv2.waitKey(1)
     if k == 27 or count >= 50:
+        print("Imagenes hechas, gracias.")
         break
 #46-48
 #Hace 300 inscripciones (aprox 30seg)y se rompe cuando llega a esa cantidad de imagenes o cuando se presiona 'Esc' (27)
